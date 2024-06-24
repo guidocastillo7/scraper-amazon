@@ -1,0 +1,5 @@
+venv/
+.env
+chromedriver.exe
+.mypy_cache/
+__pycache__/
