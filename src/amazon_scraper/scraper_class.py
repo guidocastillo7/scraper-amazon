@@ -9,7 +9,7 @@ class AmazonScraper:
 
     def get_html(self, url):
         self.driver.get(url)
-        sleep(10)
+        sleep(5)
 
         content = self.driver.page_source
         html = BeautifulSoup(content, 'html.parser')
