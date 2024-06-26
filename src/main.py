@@ -23,5 +23,8 @@ def init():
         if contador == 5:
             break
 
+    eleccion = input('Ingresa el id del producto deseado: ')
+    print(products_result[eleccion][0], products_result[eleccion][1])
+
 if __name__ == '__main__':
     init()
