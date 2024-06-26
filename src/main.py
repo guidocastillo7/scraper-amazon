@@ -1,4 +1,5 @@
 from amazon_scraper.scraper_class import AmazonScraper
+from amazon_scraper.producto_bbdd import GuardarProducto
 from selenium import webdriver
 
 
@@ -24,7 +25,17 @@ def init():
             break
 
     eleccion = input('Ingresa el id del producto deseado: ')
-    print(products_result[eleccion][0], products_result[eleccion][1])
+    db_name = products_result[eleccion][0]
+    db_price = products_result[eleccion][1]
+    db_url = 'https://www.amazon.it' + products_result[eleccion][2]
+
+
+    bbdd = GuardarProducto()
+    bbdd.save_product(
+        name=db_name,
+        price=db_price,
+        url=db_url
+    )
 
 if __name__ == '__main__':
     init()

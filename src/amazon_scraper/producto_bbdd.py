@@ -7,11 +7,22 @@ class GuardarProducto:
 
         self.db = self.client.cursor()
 
-
-    def save_product(self, name: str, price: str, url: str, ):
         self.db.execute('''
-            INSERT INTO product (name, price, url)
-            VALUES (?, ?, ?, ?, ?)
+            CREATE TABLE IF NOT EXISTS producto (
+                id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+                name TEXT,
+                price TEXT,
+                url TEXT
+            )
+            ''')
+        self.client.commit()
+
+
+    def save_product(self, name: str, price: str, url: str):
+        self.db.execute('''
+            INSERT INTO producto (name, price, url)
+            VALUES (?, ?, ?)
             ''', (name, price, url))
         
         self.client.commit()
+        self.client.close()

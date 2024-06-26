@@ -3,3 +3,5 @@ venv/
 chromedriver.exe
 .mypy_cache/
 __pycache__/
+amazon-scraper
+amazon-scraper.db
