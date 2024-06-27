@@ -26,3 +26,11 @@ class GuardarProducto:
         
         self.client.commit()
         self.client.close()
+
+
+    def read_product(self):
+        self.db.execute("SELECT * from producto")
+        productos = self.db.fetchall()
+
+        for i in productos:
+            print(f'{i[1]}: €{i[2]}', end='\n\n')

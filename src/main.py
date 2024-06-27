@@ -31,11 +31,14 @@ def init():
 
 
     bbdd = GuardarProducto()
+    bbdd.read_product()
     bbdd.save_product(
         name=db_name,
         price=db_price,
         url=db_url
     )
+
+    
 
 if __name__ == '__main__':
     init()
