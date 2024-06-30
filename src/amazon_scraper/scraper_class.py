@@ -28,7 +28,7 @@ class AmazonScraper:
             try:
                 productoName = item.find('span', {'class':'a-size-base-plus a-color-base a-text-normal'}).text
 
-                productoPrice = item.find('span', {'class':'a-price-whole'}).text \
+                productoPrice = item.find('span', {'class':'a-price-whole'}).text.replace(',', ".") \
                     + item.find('span', {'class':'a-price-fraction'}).text
                 
                 productoUrl = item.find('a', {'class':'a-link-normal s-no-outline'}).attrs['href']
@@ -38,3 +38,10 @@ class AmazonScraper:
                 pass
 
         return diccProductos
+    
+
+    def get_price(self, html_content: BeautifulSoup):
+        new_price = html_content.find('span', {'class':'a-price-whole'}).text.replace(',', ".") \
+            + html_content.find('span', {'class':'a-price-fraction'}).text
+        
+        return float(new_price)

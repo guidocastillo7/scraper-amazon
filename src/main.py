@@ -31,7 +31,8 @@ def init():
 
 
     bbdd = GuardarProducto()
-    bbdd.read_product()
+    #bbdd.read_product()
+    bbdd.check_product()
     bbdd.save_product(
         name=db_name,
         price=db_price,
