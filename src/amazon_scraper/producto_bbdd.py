@@ -62,3 +62,5 @@ class GuardarProducto:
 
         elif price_check == float(price_bbdd):
             print('El producto no ha cambiado precio')
+
+        self.client.close()
