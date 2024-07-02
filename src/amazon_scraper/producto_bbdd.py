@@ -2,8 +2,10 @@ import sqlite3
 from .scraper_class import AmazonScraper
 from selenium import webdriver
 
+#Modelo para conectar con la base de datos
 class GuardarProducto:
 
+    #Se inicia con la conexion y creando la tabla si es que no existe
     def __init__(self):
         self.client = sqlite3.connect('amazon-scraper')
 
@@ -19,7 +21,7 @@ class GuardarProducto:
             ''')
         self.client.commit()
 
-
+    #Metodo para guardar el producto elegido
     def save_product(self, name: str, price: str, url: str):
         self.db.execute('''
             INSERT INTO producto (name, price, url)
@@ -29,7 +31,7 @@ class GuardarProducto:
         self.client.commit()
         self.client.close()
 
-
+    #Metodo para ver todos los productos que estan guardados
     def read_product(self):
         self.db.execute("SELECT * from producto")
         productos = self.db.fetchall()
@@ -37,7 +39,8 @@ class GuardarProducto:
         for i in productos:
             print(f'{i[0]}.- {i[1]}: €{i[2]}', end='\n\n')
 
-
+    #Metodo para revisar el precio actual en pagina mediante su url de un producto elegido de la bbdd
+    #Y compararlo con el precio guardado en la bbdd
     def check_product(self):
         check = input('Ingresa el id del producto que quieres revisar: ')
         self.db.execute("SELECT * FROM producto WHERE id = ?", (check,))

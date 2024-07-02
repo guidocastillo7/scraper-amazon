@@ -1,12 +1,14 @@
 from bs4 import BeautifulSoup
 from time import sleep
 
+#Modelo para tomar los datos de los productos de la web
 class AmazonScraper:
 
+    #Se inicia con el driver de chrome
     def __init__(self, driver):
         self.driver = driver
 
-
+    #Metodo que toma el html de la pagina con los productos listados
     def get_html(self, url):
         self.driver.get(url)
         sleep(5)
@@ -18,7 +20,7 @@ class AmazonScraper:
 
         return html
     
-
+    #Metodo que toma los datos especificos de cada producto (nombre, precio y url)
     def get_products(self, html_content):
         diccProductos = {}
 
@@ -39,7 +41,7 @@ class AmazonScraper:
 
         return diccProductos
     
-
+    #Metodo que toma el precio de un producto elegido de la bbdd mediante su url especifica
     def get_price(self, html_content: BeautifulSoup):
         new_price = html_content.find('span', {'class':'a-price-whole'}).text.replace(',', ".") \
             + html_content.find('span', {'class':'a-price-fraction'}).text

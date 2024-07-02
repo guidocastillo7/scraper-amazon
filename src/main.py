@@ -4,11 +4,13 @@ from selenium import webdriver
 
 
 def init():
+
+    #Iniciamos dando dos opciones al usuario para elegir
     print('Que operacion quieres hacer? \n1: Buscar nuevo producto y guardarlo en bbdd. \
           \n2: Revisar precio actual de un producto ya guardado.')
     ope = input('Ingresa la operacion deseada: ')
 
-
+    #Opcion que busca el producto escrito por el usuario y guarda en la bbdd el elegido
     if ope == '1':
         item = input('Ingrese el nombre del producto: ')
 
@@ -42,6 +44,8 @@ def init():
             url=db_url
         )
 
+    #Opcion que revisa el precio en pagina actual de un producto elegido de la bbdd
+    #Y lo compara con el precio guardado en la bbdd
     elif ope == '2':
         bbdd = GuardarProducto()
         bbdd.read_product()
